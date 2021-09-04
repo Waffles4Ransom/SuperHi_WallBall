@@ -3,6 +3,11 @@ let positionY
 let speedX
 let speedY
 let radius
+let sound
+
+function preload() {
+  sound = loadSound('./assets/drop.mp3')
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight)
@@ -22,9 +27,11 @@ function draw() {
   positionY += speedY
   if ( positionY > windowHeight - radius || positionY < radius) {
     speedY *= -1
+    sound.play()
   }
   if (positionX > windowWidth - radius || positionX < radius) {
     speedX *= -1
+    sound.play()
   }
   positionX = constrain(positionX, radius, windowWidth - radius)
   positionY = constrain(positionY, radius, windowHeight - radius)
