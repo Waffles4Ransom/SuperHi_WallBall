@@ -34,6 +34,11 @@ function draw() {
   position.y = constrain(position.y, radius, windowHeight - radius)
 }
 
+function mouseClicked() {
+  let angle = random(TWO_PI)
+  speed.rotate(angle)
+}
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight)
 }
