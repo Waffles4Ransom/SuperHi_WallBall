@@ -1,7 +1,5 @@
-let positionX
-let positionY
-let speedX
-let speedY
+let position
+let speeed
 let radius
 let sound
 
@@ -11,10 +9,8 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight)
-  positionX = 100
-  positionY = 200
-  speedX = 5
-  speedY = 5
+  position = createVector(100,200)
+  speed = createVector(5, 5)
   radius = 20
 }
 
@@ -22,19 +18,20 @@ function draw() {
   background("#fe934b44")
   fill("#ffffff")
   noStroke()
-  circle(positionX, positionY, radius * 2)
-  positionX += speedX
-  positionY += speedY
-  if ( positionY > windowHeight - radius || positionY < radius) {
-    speedY *= -1
+  circle(position.x, position.y, radius * 2)
+  position.add(speed)
+  // speed.mult(1.001)
+ 
+  if ( position.y > windowHeight - radius || position.y < radius) {
+    speed.y *= -1
     sound.play()
   }
-  if (positionX > windowWidth - radius || positionX < radius) {
-    speedX *= -1
+  if (position.x > windowWidth - radius || position.x < radius) {
+    speed.x *= -1
     sound.play()
   }
-  positionX = constrain(positionX, radius, windowWidth - radius)
-  positionY = constrain(positionY, radius, windowHeight - radius)
+  position.x = constrain(position.x, radius, windowWidth - radius)
+  position.y = constrain(position.y, radius, windowHeight - radius)
 }
 
 function windowResized() {
